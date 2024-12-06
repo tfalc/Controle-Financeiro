@@ -6,7 +6,3 @@ def salva_dados(dados):
         for dado in dados:
             arquivo.write(f"{dado};")
         arquivo.write("\n")
-
-
-def salvar_receita(receita):
-    salva_dados(calculos.dados(receita))
