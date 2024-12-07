@@ -16,6 +16,42 @@ def save(date):
         # Escreve a linha resultante no arquivo, adicionando uma quebra de linha no final
         arquivo.write(f"{linha}\n")
 
+def get_data(transaction_type, column_type):
+    """
+      Lêr os dados do arquivo dados.csv, filtrar pelo tipo de transação (Receita ou Despesa), e retornar
+      Args:
+        transaction_type (str): "Receita ou Despesa"
+      Returns:
+        df
+    """
+    try:
+        # Lê o arquivo dados.csv e remove as linhas vazias
+        df = pd.read_csv("dados.csv", delimiter=";", header=None, names=["Transação", "Descrição", "Data", "Valor"])
+        df = df.dropna()
+
+        # Converter a coluna 'Valor' para float
+        df["Valor"] = df["Valor"].astype(float)
+
+        # Filtrar pelo tipo de transação
+        filtered = df[df["Transação"] == transaction_type]
+
+        # Retornar a coluna solicitada
+        if column_type in filtered.columns:
+            return filtered[column_type]
+        else:
+            raise ValueError(f"A coluna '{column_type}' não existe.")
+    except FileNotFoundError:
+        # Mensagem de erro caso o arquivo `dados.csv` não seja encontrado
+        print("Arquivo 'dados.csv' não encontrado!")
+        return  # Interrompe a execução da função
+    except pd.errors.EmptyDataError:
+        # Mensagem de erro caso o arquivo `dados.csv` esteja vazio ou contenha apenas delimitadores
+        print("Arquivo 'dados.csv' está vazio ou contém apenas delimitadores.")
+        return  # Interrompe a execução da função
+    except Exception as e:
+        # Mensagem de erro genérica para qualquer outra exceção que possa ocorrer
+        print(f"Ocorreu um erro: {e}")
+        return  # Interrompe a execução da função
 # Função para exibir os dados salvos em uma tabela
 def show_table():
     try:

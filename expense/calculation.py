@@ -1,4 +1,5 @@
 from transaction.transaction import Expense
+from data_persistence import data_manager
 
 def calc():
     new_transaction = Expense("", "", 0)
@@ -32,3 +33,12 @@ def calc():
 
     new_transaction.save()
     print("Despesa salva com sucesso")
+
+def get_total_value():
+    """
+    Retorna a soma dos valores de despesas.
+    """
+    expense_df = data_manager.get_data("Despesa", "Valor")
+    if expense_df is not None:
+        return expense_df.sum()
+    return 0.0
