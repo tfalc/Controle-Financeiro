@@ -1,21 +1,29 @@
-import receita.calculos as calculos
-
+import revenue.calculation as revenue
+import expense.calculation as expense
+import keyboard
+import data_persistence.data_manager as data
 
 def main():
-    entrada = input('Digite R para receita ou D para despesa')
-    if entrada == 'R' or entrada == 'r':
-        calculos.receita()
-    elif entrada == 'D' or entrada == 'd':
-        calculos.despesa()
-    else:
-        print('Entrada inválida. Tente novamente.')
-        main()
+    try:
+        while True:
+            if keyboard.is_pressed('esc'):
+              print("Programa encerrado pelo usuário")
+              break
+        
+            transaction_type = input("Digite o tipo de transação 'r' para receitas, 'd' para despesas, ou 't' para exibir a tabela de dados: ").lower()
+            try:
+              if transaction_type == 'r':
+                revenue.calc()
+              elif transaction_type == 'd':
+                expense.calc()
+              elif transaction_type == 't':
+                data.show_table()
+              else:
+                raise ValueError("Tipo de transação inválida!")
+            except ValueError as e:
+              print(f"Erro: {e}")
 
-
-if __name__ == '__main__':
+    except KeyboardInterrupt:
+        print("Programa encerrado pelo usuário.")
+if __name__ == "__main__":
     main()
-    print('Para sair, digite S')
-    if input() == 'S' or input() == 's':
-        exit()
-    else:
-        main()
