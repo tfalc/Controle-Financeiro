@@ -1,6 +1,14 @@
-Receita;ttttt;22/01/1999;213123.0
+Tipo;Descrição;Data;Valor
 Despesa;Despesinha;23/05/1997;31.0
 Despesa;Luz;06/06/2006;98.0
 Receita;Freela;06/07/2007;765.0
 Despesa;Internet;06/12/2024;129.0
 Despesa;Celular;07/12/2024;1900.0
+Receita;TesteFalczyNovo;07/12/2024;153.0
+Receita;TesteLeituraCSV;07/12/2024;7897.0
+Receita;testes;07/12/2024;1231231.0
+Despesa;Monitor Ryu;23/12/2024;2500.0
+Despesa;Monitor Falczy;23/12/2024;1780.0
+Receita;Freela Ryu;23/12/2024;8000.0
+Despesa;teste2;23/12/2024;10000.0
+Despesa;Sitio do Ryu;23/12/2024;800000.0
